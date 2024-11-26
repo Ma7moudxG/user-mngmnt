@@ -72,25 +72,24 @@ const TabsMenu = () => {
           <div>
             <div className="p-4 flex flex-col gap-2">
               <h1 className="font-bold text-xl">ROUTINE COMMUTIES</h1>
-              <p>12.0     miles to Grocerystore by CAR</p>
-              <p>58.0    minutes to Grocerystore by CAR</p>
-              <p>2.0        days/month to Grocerystore by CAR</p>
+              <p>12.0 miles to Grocerystore by CAR</p>
+              <p>58.0 minutes to Grocerystore by CAR</p>
+              <p>2.0 days/month to Grocerystore by CAR</p>
             </div>
-            
+
             <div className="p-4 flex flex-col gap-2">
               <h1 className="font-bold text-xl">GYM</h1>
-              <p>5.0      days / week by CAR</p>
-              <p>42.0  minute visits by CAR</p>
-              <p>4.5      miles from work</p>
+              <p>5.0 days / week by CAR</p>
+              <p>42.0 minute visits by CAR</p>
+              <p>4.5 miles from work</p>
             </div>
 
             <div className="p-4 flex flex-col gap-2">
               <h1 className="font-bold text-xl">FASTFOOD</h1>
-              <p>2.5        days / week by CAR</p>
-              <p>42.0    minute visits by CAR</p>
-              <p>0.5       miles from home</p>
+              <p>2.5 days / week by CAR</p>
+              <p>42.0 minute visits by CAR</p>
+              <p>0.5 miles from home</p>
             </div>
-            
           </div>
 
           <div className="mx-auto">
@@ -106,41 +105,55 @@ const TabsMenu = () => {
       </TabsContent>
 
       <TabsContent value="associatedClients">
-        <div className="flex justify-between items-center">
-          <div>
-            <div className="p-4 flex flex-col gap-2">
-              <h1 className="font-bold text-xl">ROUTINE COMMUTIES</h1>
-              <p>12.0     miles to Grocerystore by CAR</p>
-              <p>58.0    minutes to Grocerystore by CAR</p>
-              <p>2.0        days/month to Grocerystore by CAR</p>
-            </div>
-            
-            <div className="p-4 flex flex-col gap-2">
-              <h1 className="font-bold text-xl">GYM</h1>
-              <p>5.0      days / week by CAR</p>
-              <p>42.0  minute visits by CAR</p>
-              <p>4.5      miles from work</p>
+          <div className="flex justify-between items-start">
+            {/* Scrollable Section */}
+            <div className="h-[500px] overflow-y-auto w-[50%] ">
+              {/* Content items */}
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">Blue Blue</h1>
+                <p>Microfences: 12</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">Ford</h1>
+                <p>Microfences: 32</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">Shield</h1>
+                <p>Microfences: 9</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">HealthCare</h1>
+                <p>Microfences: 10</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">MoonPage</h1>
+                <p>Microfences: 21</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">Mercedes</h1>
+                <p>Microfences: 15</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">Toyota</h1>
+                <p>Microfences: 23</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-bold text-xl">Renault</h1>
+                <p>Microfences: 1</p>
+              </div>
             </div>
 
-            <div className="p-4 flex flex-col gap-2">
-              <h1 className="font-bold text-xl">FASTFOOD</h1>
-              <p>2.5        days / week by CAR</p>
-              <p>42.0    minute visits by CAR</p>
-              <p>0.5       miles from home</p>
+            {/* Image Section */}
+            <div>
+              <Image
+                src="/assets/images/microfence-small-map.png"
+                height={600}
+                width={600}
+                alt="logo"
+                className="h-fit mx-auto"
+              />
             </div>
-            
           </div>
-
-          <div>
-            <Image
-              src="/assets/images/microfence-small-map.png"
-              height={600}
-              width={600}
-              alt="logo"
-              className="h-fit mx-auto"
-            />
-          </div>
-        </div>
       </TabsContent>
     </Tabs>
   );

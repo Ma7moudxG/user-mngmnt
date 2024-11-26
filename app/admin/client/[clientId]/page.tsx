@@ -14,6 +14,8 @@ import { z } from "zod";
 import { FormProvider } from "react-hook-form";
 import TabsMenu from "@/components/Tabs";
 import { useRouter } from "next/navigation";
+import { GrView } from "react-icons/gr";
+import { FaEdit } from "react-icons/fa";
 
 const AssociatedUsers = ["blue blue", "ford", "fox"];
 
@@ -31,7 +33,7 @@ const page = ({ params }: { params: { clientId: string } }) => {
   return (
     <div className="mx-auto flex max-w-7x xl:max-w-[1440px] flex-col space-y-14">
       <header className="admin-header mb-2">
-        <Link href="/" className="cursor-pointer">
+        <Link href="/admin" className="cursor-pointer">
           <Image
             src="/assets/icons/logo.full.white.large.png"
             height={1000}
@@ -49,14 +51,21 @@ const page = ({ params }: { params: { clientId: string } }) => {
             <>
               {/* Left Section */}
               <div className="flex flex-col gap-4 text-lg">
-                <h1 className="header">{client.name}</h1>
-                <p
-                  className="text-white cursor-pointer"
+                <div className="flex gap-4 items-center">
+                  <h1 className="header">{client.name}</h1>
+                  <FaEdit 
+                    className="cursor-pointer text-lg ml-4 text-gray-400 hover:text-white"
+                    onClick={() => router.push(`/edit/${client.id}`)}
+                    />
+                </div>
+                <div
+                  className="text-white cursor-pointer flex items-center gap-1"
                   onClick={() => router.push(`/admin/group/${client.group}`)}
                 >
                   <span className="font-bold ">Group: </span>
-                  {client.group}
-                </p>
+                  <span className="hover:underline">{client.group}</span>
+                  <GrView className="text-lg ml-4 text-gray-400 hover:text-white " />
+                </div>
                 <p className="text-white">
                   <span className="font-bold ">Brand: </span>
                   {client.brand}
@@ -64,7 +73,7 @@ const page = ({ params }: { params: { clientId: string } }) => {
               </div>
 
               {/* Right Section */}
-              <div className="flex items-center w-[400px]">
+              <div className="flex flex-col items-end w-[400px] gap-4">
                 <FormProvider {...form}>
                   <CustomFormField
                     fieldType={FormFieldType.SELECT}

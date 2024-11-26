@@ -4,11 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomFormField from "../CustomFormField";
-import { Form, FormControl } from "../ui/form";
+import { Form } from "../ui/form";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
-import { ClientFormValidation } from "@/lib/validation";
-// import { useRouter } from "next/navigation";
+import { NewUserFormValidation } from "@/lib/validation";
+import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/client.actions";
 import { FormFieldType } from "./LoginForm";
 // import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
@@ -16,46 +16,65 @@ import { FormFieldType } from "./LoginForm";
 // import { Label } from "../ui/label";
 // import { SelectItem } from "../ui/select";
 import Image from "next/image";
-import FileUploader from "../FileUploader";
 import Link from "next/link";
-import { SelectItem } from "../ui/select";
+// import { SelectItem } from "../ui/select";
+import { useToast } from "@/hooks/use-toast"
 
-const durations = ["30 minutes", "1 hour", "1 day", "15 days", "30 days"];
-const groups = ["Tech event 1", "Social Event 1", "Tech event 2", "Social Event 2"]
+// const durations = ["30 minutes", "1 hour", "1 day", "15 days", "30 days"];
+// const groups = ["Tech event 1", "Social Event 1", "Tech event 2", "Social Event 2"]
 
 const RegisterForm = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast()
 
-  const form = useForm<z.infer<typeof ClientFormValidation>>({
-    resolver: zodResolver(ClientFormValidation),
+  // const form = useForm<z.infer<typeof ClientFormValidation>>({
+  //   resolver: zodResolver(ClientFormValidation),
+  //   defaultValues: {
+  //     username: "",
+  //     email: "",
+  //     first_name: "",
+  //     last_name: "",
+  //     password: "",
+  //     thumbnail: "",
+  //     brand_name: "",
+  //     group_name: "",
+  //     duration: "",
+  //     status: "status",
+  //     anonymous: false,
+  //     last_activity: new Date(),
+  //     delete_flag: new Date(),
+  //     ref_id: "",
+  //   },
+  // });
+  const form = useForm<z.infer<typeof NewUserFormValidation>>({
+    resolver: zodResolver(NewUserFormValidation),
     defaultValues: {
       username: "",
-      email: "",
-      first_name: "",
-      last_name: "",
-      password: "",
-      thumbnail: "",
-      brand_name: "",
-      group_name: "",
-      duration: "",
-      status: "status",
-      anonymous: false,
-      last_activity: new Date(),
-      delete_flag: new Date(),
-      ref_id: "",
+      password: ""
     },
   });
 
-  async function onSubmit(values: z.infer<typeof ClientFormValidation>) {
+  async function onSubmit(values: z.infer<typeof NewUserFormValidation>) {
     setIsLoading(true);
-    // const formData = new FormData();
-    // formData.append("blobFile", blobFile);
-    // formData.append("fileName", values.identificationDocument[0].name);
+
     try {
-      const client = await createUser(values);
+      const client = await createUser(values as CreateUserParams1);
       console.log(client)
-      // if (client) router.push(`/`);
+      if (client) {
+        toast({
+          title: "Sucsess",
+          description: "Client was created successfully",
+          className: "bg-green-600 text-white border-0 ",
+        })
+        router.push(`/admin`);
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Failed",
+          description: "Client creation failed",
+        })
+      }
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +83,7 @@ const RegisterForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex-1">
-        <Link href="/" className="cursor-pointer">
+        <Link href="/admin" className="cursor-pointer">
           <Image
             src="/assets/icons/logo.full.white.large.png"
             height={1000}
@@ -79,7 +98,7 @@ const RegisterForm = () => {
           </h1>
         </section>
 
-        <div className="flex gap-8">
+        {/* <div className="flex gap-8">
           <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
@@ -99,7 +118,7 @@ const RegisterForm = () => {
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
           />
-        </div>
+        </div> */}
 
         <CustomFormField
           fieldType={FormFieldType.INPUT}
@@ -111,7 +130,7 @@ const RegisterForm = () => {
           iconAlt="user"
         />
 
-        <CustomFormField
+        {/* <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
           name="email"
@@ -119,7 +138,7 @@ const RegisterForm = () => {
           placeholder="user@gmail.com"
           iconSrc="/assets/icons/email.svg"
           iconAlt="email"
-        />
+        /> */}
 
         <CustomFormField
           fieldType={FormFieldType.INPUT}
@@ -129,7 +148,7 @@ const RegisterForm = () => {
           placeholder="********"
         />
 
-        <div className="flex gap-8">
+        {/* <div className="flex gap-8">
           <CustomFormField
             fieldType={FormFieldType.SELECT}
             control={form.control}
@@ -153,9 +172,9 @@ const RegisterForm = () => {
             label="Brand Name"
             placeholder="Brand Name"
           />
-        </div>
+        </div> */}
 
-        <CustomFormField
+        {/* <CustomFormField
           fieldType={FormFieldType.SELECT}
           control={form.control}
           name="duration"
@@ -169,9 +188,9 @@ const RegisterForm = () => {
               </div>
             </SelectItem>
           ))}
-        </CustomFormField>
+        </CustomFormField> */}
 
-        <CustomFormField
+        {/* <CustomFormField
           fieldType={FormFieldType.SKELETON}
           control={form.control}
           name="thumbnail"
@@ -181,7 +200,7 @@ const RegisterForm = () => {
               <FileUploader files={field.value} onChange={field.onChange} />
             </FormControl>
           )}
-        />
+        /> */}
 
         <SubmitButton isLoading={isLoading}>Add A Client</SubmitButton>
       </form>

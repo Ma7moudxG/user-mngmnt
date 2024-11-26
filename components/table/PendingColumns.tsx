@@ -10,16 +10,16 @@ import { FaEdit } from "react-icons/fa";
 // import { AiOutlineMessage } from "react-icons/ai";
 // import { LuBellDot } from "react-icons/lu";
 import AppointmentModal from "../AppointmentModal";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const ClientCell = ({ rowIndex }: { rowIndex: number }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const client = PendingClients[rowIndex];
 
   return (
     <div
-      className="flex items-center gap-3 cursor-pointer"
-      onClick={() => router.push(`/admin/client/${client.id}`)}
+      className="flex items-center gap-3"
+      // onClick={() => router.push(`/admin/client/${client.id}`)}
     >
       {/* <Image
         src={client?.image || ""}

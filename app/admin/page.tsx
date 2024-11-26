@@ -13,6 +13,8 @@ import { PendingColumns } from "@/components/table/PendingColumns";
 import { DeactivatedColumns } from "@/components/table/DeactivatedColumns";
 import { InvitedColumns } from "@/components/table/InvitedColumns";
 
+// import { getUsers } from "@/lib/actions/client.actions";
+
 const Admin = () => {
   const [status, setStatus] = useState("invited"); // Manage status
 
@@ -23,30 +25,61 @@ const Admin = () => {
     cancelledCount: 2,
   };
 
-  const newClient = {
-    username: "Udai",
-    password: "udai"
-  }
+
+  const getUsers = async () => {
+    const url = "https://geofencing-prod.dgtl-factory.com/zeus/users?token=AIzaSyCeZsq59_P5O8NwX_EoluO2zi-f3OseYu0&filter={}";
   
-  const createUser = async (user: CreateUserParams1) => {
     try {
-        const res = await fetch("https://geofencing-prod.dgtl-factory.com/zeus/users?token=AIzaSyCeZsq59_P5O8NwX_EoluO2zi-f3OseYu0", {
-            method: "POST",
-            body: JSON.stringify(user)
-
-        } ).then( res => res.json())
-        
-        console.log('response: ', res)
-        return 
-
-        // return 
-        // parseStringify(newUser);
-    } catch (error: any) {
-        console.error("An error occurred while creating a new user:", error);
+      console.log("Fetching users with URL:", url);
+      const response = await fetch(url, {
+        method: "GET",
+      });
+  
+      const data = await response.json();
+      // console.log("API Response:", data);
+  
+      if (!response.ok) {
+        console.error(
+          "API returned an error:",
+          response.status,
+          response.statusText,
+          data
+        );
+        return null; // Handle error as needed
+      }
+  
+      return data;
+    } catch (error) {
+      console.error("An error occurred while fetching users:", error);
+      return null;
     }
-}
+  };
+  
 
-createUser(newClient)
+// Properly handle the Promise returned by `getUsers`
+const displayUsers = async () => {
+  const users = await getUsers();
+
+  if (!users) {
+    console.error("Failed to fetch users or API returned null.");
+    return; // Exit if users is null
+  }
+
+  if (users.errors) {
+    console.error("Error fetching users:", users.errors);
+    return; // Stop further processing
+  }
+
+  if (users.data && Array.isArray(users.data)) {
+    console.log("Fetched users:", users.data.length);
+  } else {
+    console.log("No users found or data is in an unexpected format.");
+  }
+};
+
+displayUsers();
+
+ 
 
   return (
     <div className="mx-auto flex max-w-7x xl:max-w-[1440px] flex-col space-y-14">

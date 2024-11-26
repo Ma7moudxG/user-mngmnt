@@ -34,6 +34,7 @@ const ClientCell = ({ rowIndex }: { rowIndex: number }) => {
 
 export const ActiveColumns: ColumnDef<Client>[] = [
   {
+    accessorKey: "id",
     header: "ID",
     cell: ({ row }) => <p className="text-14-medium">{row.index + 1}</p>,
   },
@@ -156,3 +157,4 @@ export const ActiveColumns: ColumnDef<Client>[] = [
     },
   },
 ];
+

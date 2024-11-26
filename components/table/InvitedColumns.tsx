@@ -6,17 +6,17 @@ import { InvitedClients } from "@/constants";
 import { Client } from "@/types/appwrite.types";
 import { TiTick } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 // Create a separate component for the "Client" cell
 const ClientCell = ({ rowIndex }: { rowIndex: number }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const client = InvitedClients[rowIndex];
 
   return (
     <div
-      className="flex items-center gap-3 cursor-pointer"
-      onClick={() => router.push(`/admin/client/${client.id}`)}
+      className="flex items-center gap-3"
+      // onClick={() => router.push(`/admin/client/${client.id}`)}
     >
       {/* <Image
         src={client?.image || ""}

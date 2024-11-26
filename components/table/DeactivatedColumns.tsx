@@ -4,9 +4,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import StatusBadge, { StatusType } from "../StatusBadge";
 import { DeactivatedClients } from "@/constants";
 import { Client } from "@/types/appwrite.types";
-import { FaEdit } from "react-icons/fa";
-import { LuBellDot } from "react-icons/lu";
-import AppointmentModal from "../AppointmentModal";
+// import { FaEdit } from "react-icons/fa";
+// import { LuBellDot } from "react-icons/lu";
+// import AppointmentModal from "../AppointmentModal";
 import { useRouter } from "next/navigation";
 
 const ClientCell = ({ rowIndex }: { rowIndex: number }) => {
@@ -114,34 +114,34 @@ export const DeactivatedColumns: ColumnDef<Client>[] = [
       return (
         <div className="flex gap-1 opacity-0 group-hover/table-row:opacity-100 transition-opacity duration-200">
           {/* Edit Button */}
-          <div className="status-badge cursor-pointer bg-gray-800 hover:bg-gray-600 group">
-            <button className="relative text-xs font-medium capitalize text-gray-400 hover:text-white">
-              <FaEdit className="text-base" />
-              <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
-                Edit
-              </span>
-            </button>
-          </div>
-
-          <div className="status-badge cursor-pointer bg-gray-800 hover:bg-gray-600 group">
-            <div className="relative text-xs font-medium capitalize text-gray-400 hover:text-white">
-              <AppointmentModal
-                
-              />
-              <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-[12px] hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
-                Notify
-              </span>
+            {/* <div className="status-badge cursor-pointer bg-gray-800 hover:bg-gray-600 group">
+              <button className="relative text-xs font-medium capitalize text-gray-400 hover:text-white">
+                <FaEdit className="text-base" />
+                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
+                  Edit
+                </span>
+              </button>
             </div>
-          </div>
 
-          <div className="status-badge cursor-pointer bg-gray-800 hover:bg-gray-600 group">
-            <button className="relative text-xs font-medium capitalize text-gray-400 hover:text-white">
-              <LuBellDot className="text-lg" />
-              <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
-                Notifications
-              </span>
-            </button>
-          </div>
+            <div className="status-badge cursor-pointer bg-gray-800 hover:bg-gray-600 group">
+              <div className="relative text-xs font-medium capitalize text-gray-400 hover:text-white">
+                <AppointmentModal
+                  
+                />
+                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-[12px] hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
+                  Notify
+                </span>
+              </div>
+            </div>
+
+            <div className="status-badge cursor-pointer bg-gray-800 hover:bg-gray-600 group">
+              <button className="relative text-xs font-medium capitalize text-gray-400 hover:text-white">
+                <LuBellDot className="text-lg" />
+                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
+                  Notifications
+                </span>
+              </button>
+            </div> */}
 
           <div className="status-badge cursor-pointer bg-gray-800 hover:bg-[#3D3713]">
             <button className="text-xs font-medium capitalize text-gray-400 hover:text-white">

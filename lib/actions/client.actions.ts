@@ -16,37 +16,39 @@ import { Clients } from "@/constants";
 
 // const newUser = {
 //         user.username,
-//         user.email, 
+//         user.email,
 //         user.first_name,
 //         user.last_name,
 //         user.password,
 //         user.thumbnail,
 //         user.status,
-//         user.anonymous, 
+//         user.anonymous,
 //         user.last_activi,
 //         user.delete_fl,
 //         user.ref_id ,
-//         user.name 
+//         user.name
 // }
 
 export const createUser = async (user: CreateUserParams1) => {
-    try {
-        const res = await fetch("https://geofencing-prod.dgtl-factory.com/zeus/users", {
-            cache: "force-cache",
-            method: "POST",
-            body: JSON.stringify(user)
+  try {
+    const res = await fetch(
+      "https://geofencing-prod.dgtl-factory.com/zeus/users?token=AIzaSyCeZsq59_P5O8NwX_EoluO2zi-f3OseYu0",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Correct capitalization
+        },
+        body: JSON.stringify(user), // Corrected placement of headers and body
+      }
+    )
 
-        } ).then( res => res.json())
-        
-        console.log('response: ', res)
-        return 
+    const data = await res.json();
+    return data;
 
-        // return 
-        // parseStringify(newUser);
-    } catch (error: any) {
-        console.error("An error occurred while creating a new user:", error);
-    }
-}
+  } catch (error: any) {
+    console.error("An error occurred while creating a new user:", error);
+  }
+};
 
 // export const getUser = async (userId: string) => {
 //     try {
@@ -56,7 +58,6 @@ export const createUser = async (user: CreateUserParams1) => {
 //         console.log(error)
 //     }
 // }
-
 
 // export const registerClient = async ({ ...patient }: RegisterUserParams) => {
 //     try {
@@ -69,7 +70,7 @@ export const createUser = async (user: CreateUserParams1) => {
 //             )
 //             console.log("storage : ", storage)
 //             file = await storage.createFile(
-//                 '66e9f318000840e2d92d', 
+//                 '66e9f318000840e2d92d',
 //                 ID.unique(),
 //                 inputFile
 //             )
@@ -83,7 +84,7 @@ export const createUser = async (user: CreateUserParams1) => {
 //             {
 //                 identificationDocumentId: file?.$id || null,
 //                 identificationDocumentUrl: `${process.env.NEXT_PUBLIC_ENDPOINT}/storage/buckets/66e9f318000840e2d92d/files/${file?.$id}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`,
-//                 ...patient 
+//                 ...patient
 //             }
 //         )
 
@@ -95,18 +96,19 @@ export const createUser = async (user: CreateUserParams1) => {
 // }
 
 export const getUsers = async () => {
-    try {
-        const data = await fetch("https://geofencing-prod.dgtl-factory.com/zeus/users")
-        .then((res) => res.json())
+  try {
+    const data = await fetch(
+      "https://geofencing-prod.dgtl-factory.com/zeus/users?token=AIzaSyCeZsq59_P5O8NwX_EoluO2zi-f3OseYu0"
+    ).then((res) => res.json());
 
-        console.log(data)
+    console.log(data);
 
-        return ;
-    } catch (error) {
-        console.log(error)
-    }
-}
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const getClientById = ( clientId : string ) => {
-    return Clients.find(client => client.id.toString() === clientId.toString());
-}
+export const getClientById = (clientId: string) => {
+  return Clients.find((client) => client.id.toString() === clientId.toString());
+};
